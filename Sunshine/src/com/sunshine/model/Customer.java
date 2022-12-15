@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class Customer {
 	private String customerID;
-	private String firstname;
+	private String firstName;
 	private String fatherName;
 	private String lastName;
 	private String motherName;
-	private LocalDate dateOfBirth;
+	private String dateOfBirth;
 	private String gender;
 	private String addressID;
 	private int contactNo;
@@ -19,11 +19,11 @@ public class Customer {
 		super();
 	}
 
-	public Customer(String customerID, String firstname, String lastName, LocalDate dateOfBirth, String gender,
+	public Customer(String customerID, String firstName, String lastName, String dateOfBirth, String gender,
 			String addressID, int contactNo, String email, String password) {
 		super();
 		this.customerID = customerID;
-		this.firstname = firstname;
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
@@ -33,11 +33,11 @@ public class Customer {
 		this.password = password;
 	}
 
-	public Customer(String customerID, String firstname, String fatherName, String lastName, String motherName,
-			LocalDate dateOfBirth, String gender, String addressID, int contactNo, String email, String password) {
+	public Customer(String customerID, String firstName, String fatherName, String lastName, String motherName,
+			String dateOfBirth, String gender, String addressID, int contactNo, String email, String password) {
 		super();
 		this.customerID = customerID;
-		this.firstname = firstname;
+		this.firstName = firstName;
 		this.fatherName = fatherName;
 		this.lastName = lastName;
 		this.motherName = motherName;
@@ -57,12 +57,12 @@ public class Customer {
 		this.customerID = customerID;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getFatherName() {
@@ -89,11 +89,11 @@ public class Customer {
 		this.motherName = motherName;
 	}
 
-	public LocalDate getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -105,11 +105,11 @@ public class Customer {
 		this.gender = gender;
 	}
 
-	public String getAddress() {
+	public String getAddressID() {
 		return addressID;
 	}
 
-	public void setAddress(String addressID) {
+	public void setAddressID(String addressID) {
 		this.addressID = addressID;
 	}
 
@@ -139,7 +139,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Administrator [customerID=" + customerID + ", firstname=" + firstname + ", fatherName=" + fatherName
+		return "Administrator [customerID=" + customerID + ", firstName=" + firstName + ", fatherName=" + fatherName
 				+ ", lastName=" + lastName + ", motherName=" + motherName + ", dateOfBirth=" + dateOfBirth + ", gender="
 				+ gender + ", addressID=" + addressID + ", contactNo=" + contactNo + ", email=" + email + ", password="
 				+ password + "]";

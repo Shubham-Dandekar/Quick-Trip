@@ -9,21 +9,26 @@ public class Bus {
 	private LocalDateTime startDateTime;
 	private String endPoint;
 	private LocalDateTime endDateTime;
-	private int seats;
+	private int capacity;
+	private int seatsAvailable;
+	private String busStatus;
 	
 	public Bus() {
 		super();
 	}
 
-	public Bus(String name, String startPoint, LocalDateTime startDateTime, String endPoint, LocalDateTime endDateTime,
-			int seats) {
+	public Bus(int busID, String name, String startPoint, LocalDateTime startDateTime, String endPoint,
+			LocalDateTime endDateTime, int capacity, int seatsAvailable, String busStatus) {
 		super();
+		this.busID = busID;
 		this.name = name;
 		this.startPoint = startPoint;
 		this.startDateTime = startDateTime;
 		this.endPoint = endPoint;
 		this.endDateTime = endDateTime;
-		this.seats = seats;
+		this.capacity = capacity;
+		this.seatsAvailable = seatsAvailable;
+		this.busStatus = busStatus;
 	}
 
 	public int getBusID() {
@@ -74,17 +79,34 @@ public class Bus {
 		this.endDateTime = endDateTime;
 	}
 
-	public int getSeats() {
-		return seats;
+	public int getCapacity() {
+		return capacity;
 	}
 
-	public void setSeats(int seats) {
-		this.seats = seats;
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public int getSeatsAvailable() {
+		return seatsAvailable;
+	}
+
+	public void setSeatsAvailable(int seatsAvailable) {
+		this.seatsAvailable = seatsAvailable;
+	}
+
+	public String getBusStatus() {
+		return busStatus;
+	}
+
+	public void setBusStatus(String busStatus) {
+		this.busStatus = busStatus;
 	}
 
 	@Override
 	public String toString() {
 		return "Bus [busID=" + busID + ", name=" + name + ", startPoint=" + startPoint + ", startDateTime="
-				+ startDateTime + ", endPoint=" + endPoint + ", endDateTime=" + endDateTime + ", seats=" + seats + "]";
+				+ startDateTime + ", endPoint=" + endPoint + ", endDateTime=" + endDateTime + ", capacity=" + capacity
+				+ ", seatsAvailable=" + seatsAvailable + ", busStatus=" + busStatus + "]";
 	}	
 }

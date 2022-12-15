@@ -3,7 +3,7 @@ package com.sunshine.model;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CustomerDTO {
+public class CustomerDTO1 {
 	private String customerID;
 	private String firstname;
 	private String fatherName;
@@ -16,11 +16,11 @@ public class CustomerDTO {
 	private String email;
 	private List<TicketDTO> tickets;
 	
-	public CustomerDTO() {
+	public CustomerDTO1() {
 		super();
 	}
 
-	public CustomerDTO(String customerID, String firstname, String fatherName, String lastName, String motherName,
+	public CustomerDTO1(String customerID, String firstname, String fatherName, String lastName, String motherName,
 			LocalDate dateOfBirth, String gender, String addressID, int contactNo, String email,
 			List<TicketDTO> tickets) {
 		super();

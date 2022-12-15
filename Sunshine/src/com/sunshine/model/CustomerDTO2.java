@@ -1,41 +1,32 @@
 package com.sunshine.model;
 
-public class Administrator {
-	private String adminID;
-	private String firstName;
+import java.time.LocalDate;
+import java.util.List;
+
+public class CustomerDTO2 {
+	private String customerID;
+	private String firstname;
 	private String fatherName;
 	private String lastName;
 	private String motherName;
-	private String dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String gender;
 	private String addressID;
 	private int contactNo;
 	private String email;
 	private String password;
+	private List<TicketDTO> tickets;
 	
-	public Administrator() {
+	public CustomerDTO2() {
 		super();
 	}
 
-	public Administrator(String adminID, String firstName, String lastName, String dateOfBirth, String gender,
-			String addressID, int contactNo, String email, String password) {
+	public CustomerDTO2(String customerID, String firstname, String fatherName, String lastName, String motherName,
+			LocalDate dateOfBirth, String gender, String addressID, int contactNo, String email, String password,
+			List<TicketDTO> tickets) {
 		super();
-		this.adminID = adminID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.addressID = addressID;
-		this.contactNo = contactNo;
-		this.email = email;
-		this.password = password;
-	}
-
-	public Administrator(String adminID, String firstName, String fatherName, String lastName, String motherName,
-			String dateOfBirth, String gender, String addressID, int contactNo, String email, String password) {
-		super();
-		this.adminID = adminID;
-		this.firstName = firstName;
+		this.customerID = customerID;
+		this.firstname = firstname;
 		this.fatherName = fatherName;
 		this.lastName = lastName;
 		this.motherName = motherName;
@@ -45,22 +36,23 @@ public class Administrator {
 		this.contactNo = contactNo;
 		this.email = email;
 		this.password = password;
+		this.tickets = tickets;
 	}
 
-	public String getAdminID() {
-		return adminID;
+	public String getCustomerID() {
+		return customerID;
 	}
 
-	public void setAdminID(String adminID) {
-		this.adminID = adminID;
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getFatherName() {
@@ -87,11 +79,11 @@ public class Administrator {
 		this.motherName = motherName;
 	}
 
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -135,11 +127,19 @@ public class Administrator {
 		this.password = password;
 	}
 
+	public List<TicketDTO> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<TicketDTO> tickets) {
+		this.tickets = tickets;
+	}
+
 	@Override
 	public String toString() {
-		return "Administrator [adminID=" + adminID + ", firstName=" + firstName + ", fatherName=" + fatherName
+		return "CustomerDTO2 [customerID=" + customerID + ", firstname=" + firstname + ", fatherName=" + fatherName
 				+ ", lastName=" + lastName + ", motherName=" + motherName + ", dateOfBirth=" + dateOfBirth + ", gender="
 				+ gender + ", addressID=" + addressID + ", contactNo=" + contactNo + ", email=" + email + ", password="
-				+ password + "]";
+				+ password + ", tickets=" + tickets + "]";
 	}
 }

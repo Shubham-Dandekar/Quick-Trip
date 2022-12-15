@@ -1,17 +1,15 @@
 package com.sunshine.model;
 
-import java.time.LocalDate;
-
 public class Customer {
-	private String customerID;
+	private int customerID;
 	private String firstName;
 	private String fatherName;
 	private String lastName;
 	private String motherName;
 	private String dateOfBirth;
 	private String gender;
-	private String addressID;
-	private int contactNo;
+	private String address;
+	private String contactNo;
 	private String email;
 	private String password;
 	
@@ -19,22 +17,8 @@ public class Customer {
 		super();
 	}
 
-	public Customer(String customerID, String firstName, String lastName, String dateOfBirth, String gender,
-			String addressID, int contactNo, String email, String password) {
-		super();
-		this.customerID = customerID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.addressID = addressID;
-		this.contactNo = contactNo;
-		this.email = email;
-		this.password = password;
-	}
-
-	public Customer(String customerID, String firstName, String fatherName, String lastName, String motherName,
-			String dateOfBirth, String gender, String addressID, int contactNo, String email, String password) {
+	public Customer(int customerID, String firstName, String fatherName, String lastName, String motherName,
+			String dateOfBirth, String gender, String address, String contactNo, String email, String password) {
 		super();
 		this.customerID = customerID;
 		this.firstName = firstName;
@@ -43,17 +27,17 @@ public class Customer {
 		this.motherName = motherName;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
-		this.addressID = addressID;
+		this.address = address;
 		this.contactNo = contactNo;
 		this.email = email;
 		this.password = password;
 	}
 
-	public String getAdminID() {
+	public int getCustomerID() {
 		return customerID;
 	}
 
-	public void setAdminID(String customerID) {
+	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
 
@@ -105,19 +89,19 @@ public class Customer {
 		this.gender = gender;
 	}
 
-	public String getAddressID() {
-		return addressID;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddressID(String addressID) {
-		this.addressID = addressID;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public int getContactNo() {
+	public String getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(int contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 
@@ -139,9 +123,9 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Administrator [customerID=" + customerID + ", firstName=" + firstName + ", fatherName=" + fatherName
+		return "Customer [customerID=" + customerID + ", firstName=" + firstName + ", fatherName=" + fatherName
 				+ ", lastName=" + lastName + ", motherName=" + motherName + ", dateOfBirth=" + dateOfBirth + ", gender="
-				+ gender + ", addressID=" + addressID + ", contactNo=" + contactNo + ", email=" + email + ", password="
+				+ gender + ", address=" + address + ", contactNo=" + contactNo + ", email=" + email + ", password="
 				+ password + "]";
 	}
 }

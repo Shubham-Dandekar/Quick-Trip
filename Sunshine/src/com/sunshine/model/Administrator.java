@@ -1,15 +1,15 @@
 package com.sunshine.model;
 
 public class Administrator {
-	private String adminID;
+	private int adminID;
 	private String firstName;
 	private String fatherName;
 	private String lastName;
 	private String motherName;
 	private String dateOfBirth;
 	private String gender;
-	private String addressID;
-	private int contactNo;
+	private String address;
+	private String contactNo;
 	private String email;
 	private String password;
 	
@@ -17,22 +17,8 @@ public class Administrator {
 		super();
 	}
 
-	public Administrator(String adminID, String firstName, String lastName, String dateOfBirth, String gender,
-			String addressID, int contactNo, String email, String password) {
-		super();
-		this.adminID = adminID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.addressID = addressID;
-		this.contactNo = contactNo;
-		this.email = email;
-		this.password = password;
-	}
-
-	public Administrator(String adminID, String firstName, String fatherName, String lastName, String motherName,
-			String dateOfBirth, String gender, String addressID, int contactNo, String email, String password) {
+	public Administrator(int adminID, String firstName, String fatherName, String lastName, String motherName,
+			String dateOfBirth, String gender, String address, String contactNo, String email, String password) {
 		super();
 		this.adminID = adminID;
 		this.firstName = firstName;
@@ -41,17 +27,17 @@ public class Administrator {
 		this.motherName = motherName;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
-		this.addressID = addressID;
+		this.address = address;
 		this.contactNo = contactNo;
 		this.email = email;
 		this.password = password;
 	}
 
-	public String getAdminID() {
+	public int getAdminID() {
 		return adminID;
 	}
 
-	public void setAdminID(String adminID) {
+	public void setAdminID(int adminID) {
 		this.adminID = adminID;
 	}
 
@@ -103,19 +89,19 @@ public class Administrator {
 		this.gender = gender;
 	}
 
-	public String getAddressID() {
-		return addressID;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddressID(String addressID) {
-		this.addressID = addressID;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public int getContactNo() {
+	public String getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(int contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 
@@ -139,7 +125,7 @@ public class Administrator {
 	public String toString() {
 		return "Administrator [adminID=" + adminID + ", firstName=" + firstName + ", fatherName=" + fatherName
 				+ ", lastName=" + lastName + ", motherName=" + motherName + ", dateOfBirth=" + dateOfBirth + ", gender="
-				+ gender + ", addressID=" + addressID + ", contactNo=" + contactNo + ", email=" + email + ", password="
+				+ gender + ", address=" + address + ", contactNo=" + contactNo + ", email=" + email + ", password="
 				+ password + "]";
 	}
 }

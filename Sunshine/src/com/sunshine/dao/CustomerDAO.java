@@ -3,9 +3,7 @@ package com.sunshine.dao;
 import java.util.List;
 
 import com.sunshine.exception.CustomerException;
-import com.sunshine.model.Address;
 import com.sunshine.model.Customer;
-import com.sunshine.model.CustomerDTO3;
 
 public interface CustomerDAO {
 
@@ -33,7 +31,7 @@ public interface CustomerDAO {
 	
 	public String changeCustomerDateOfBirth(String dateOfBirth, int customerID) throws CustomerException;
 	
-	public String changeCustomerAddress(Address address, int customerID) throws CustomerException;
+	public String changeCustomerAddress(String address, int customerID) throws CustomerException;
 	
 	public String changeCustomerContactNo(String contactNo, int customerID) throws CustomerException;
 	
@@ -47,5 +45,5 @@ public interface CustomerDAO {
 	
 //	Other
 	
-	public List<CustomerDTO3> showAllCustomers() throws CustomerException;
+	public List<Customer> showAllCustomers() throws CustomerException;
 }

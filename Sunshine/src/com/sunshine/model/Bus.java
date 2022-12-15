@@ -1,34 +1,30 @@
 package com.sunshine.model;
 
-import java.time.LocalDateTime;
-
 public class Bus {
 	private int busID;
-	private String name;
+	private String busName;
 	private String startPoint;
-	private LocalDateTime startDateTime;
 	private String endPoint;
-	private LocalDateTime endDateTime;
+	private String startTime;
+	private String endTime;
 	private int capacity;
 	private int seatsAvailable;
-	private String busStatus;
 	
 	public Bus() {
 		super();
 	}
 
-	public Bus(int busID, String name, String startPoint, LocalDateTime startDateTime, String endPoint,
-			LocalDateTime endDateTime, int capacity, int seatsAvailable, String busStatus) {
+	public Bus(int busID, String busName, String startPoint, String endPoint, String startTime, String endTime,
+			int capacity, int seatsAvailable) {
 		super();
 		this.busID = busID;
-		this.name = name;
+		this.busName = busName;
 		this.startPoint = startPoint;
-		this.startDateTime = startDateTime;
 		this.endPoint = endPoint;
-		this.endDateTime = endDateTime;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.capacity = capacity;
 		this.seatsAvailable = seatsAvailable;
-		this.busStatus = busStatus;
 	}
 
 	public int getBusID() {
@@ -39,12 +35,12 @@ public class Bus {
 		this.busID = busID;
 	}
 
-	public String getName() {
-		return name;
+	public String getBusName() {
+		return busName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBusName(String busName) {
+		this.busName = busName;
 	}
 
 	public String getStartPoint() {
@@ -55,14 +51,6 @@ public class Bus {
 		this.startPoint = startPoint;
 	}
 
-	public LocalDateTime getStartDateTime() {
-		return startDateTime;
-	}
-
-	public void setStartDateTime(LocalDateTime startDateTime) {
-		this.startDateTime = startDateTime;
-	}
-
 	public String getEndPoint() {
 		return endPoint;
 	}
@@ -71,12 +59,20 @@ public class Bus {
 		this.endPoint = endPoint;
 	}
 
-	public LocalDateTime getEndDateTime() {
-		return endDateTime;
+	public String getStartTime() {
+		return startTime;
 	}
 
-	public void setEndDateTime(LocalDateTime endDateTime) {
-		this.endDateTime = endDateTime;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 	public int getCapacity() {
@@ -95,18 +91,10 @@ public class Bus {
 		this.seatsAvailable = seatsAvailable;
 	}
 
-	public String getBusStatus() {
-		return busStatus;
-	}
-
-	public void setBusStatus(String busStatus) {
-		this.busStatus = busStatus;
-	}
-
 	@Override
 	public String toString() {
-		return "Bus [busID=" + busID + ", name=" + name + ", startPoint=" + startPoint + ", startDateTime="
-				+ startDateTime + ", endPoint=" + endPoint + ", endDateTime=" + endDateTime + ", capacity=" + capacity
-				+ ", seatsAvailable=" + seatsAvailable + ", busStatus=" + busStatus + "]";
-	}	
+		return "Bus [busID=" + busID + ", busName=" + busName + ", startPoint=" + startPoint + ", endPoint=" + endPoint
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", capacity=" + capacity + ", seatsAvailable="
+				+ seatsAvailable + "]";
+	}
 }

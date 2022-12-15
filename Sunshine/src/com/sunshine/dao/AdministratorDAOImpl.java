@@ -6,15 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.sunshine.exception.AdministratorException;
-import com.sunshine.model.Address;
 import com.sunshine.model.Administrator;
 import com.sunshine.utility.DBUtil;
 
 public class AdministratorDAOImpl implements AdministratorDAO{
 
 	@Override
-	public String adminLogIn(String email, String password) throws AdministratorException {
-		String adminID = null;
+	public int adminLogIn(String email, String password) throws AdministratorException {
+		int adminID = -1;
 		
 		try (Connection conn = DBUtil.provideConnection()){
 			
@@ -27,7 +26,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
-				adminID = rs.getString("AdminID");
+				adminID = rs.getInt("AdminID");
 			} else {
 				throw new AdministratorException("Bad credentials...");
 			}
@@ -39,14 +38,14 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String getAdminName(String adminID) throws AdministratorException {
+	public String getAdminName(int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;;
 		
 		try (Connection conn = DBUtil.provideConnection()) {
 			PreparedStatement ps = conn.prepareStatement("select First_Name, Last_Name from "
 					+ "administrator where AdminID = ?");
 			
-			ps.setString(1, adminID);
+			ps.setInt(1, adminID);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -66,16 +65,16 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public Administrator showAdminDetails(String adminID) throws AdministratorException {
+	public Administrator showAdminDetails(int adminID) throws AdministratorException {
 		Administrator admin = null;
 		
 		try (Connection conn = DBUtil.provideConnection()){
 			
 			PreparedStatement ps = conn.prepareStatement("select First_Name, Last_Name, Father_Name, "
-					+ "Mother_Name, Gender, Date_Of_Birth, AddressID, Contact_No, Email from administrator "
+					+ "Mother_Name, Gender, Date_Of_Birth, Address, Contact_No, Email from administrator "
 					+ "where AdminID=?");
 			
-			ps.setString(1, adminID);
+			ps.setInt(1, adminID);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -89,8 +88,8 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 				admin.setMotherName(rs.getString("Mother_Name"));
 				admin.setGender(rs.getString("Gender"));
 				admin.setDateOfBirth(rs.getString("Date_Of_Birth"));
-				admin.setAddressID(rs.getString("AddressID"));
-				admin.setContactNo(rs.getInt("Contact_No"));
+				admin.setAddress(rs.getString("Address"));
+				admin.setContactNo(rs.getString("Contact_No"));
 				admin.setEmail(rs.getString("Email"));
 			} else {
 				throw new AdministratorException("Admin not found");
@@ -108,24 +107,26 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 		String msg = "Failed to register new administrator...";
 		
 		try (Connection conn = DBUtil.provideConnection()) {
-			PreparedStatement ps = conn.prepareStatement("insert into administrator values(?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("insert into administrator (First_Name, "
+					+ "Father_Name, Last_Name, Mother_Name, Date_Of_Birth, Gender, Address, "
+					+ "Contact_No, Email, Password) values (?,?,?,?,?,?,?,?,?,?)");
 			
-			ps.setString(1, admin.getAdminID());
-			ps.setString(2, admin.getFirstName());
-			ps.setString(3, admin.getFatherName());
-			ps.setString(4, admin.getLastName());
-			ps.setString(5, admin.getMotherName());
-			ps.setString(6, admin.getDateOfBirth());
-			ps.setString(7, admin.getGender());
-			ps.setString(8, admin.getAddressID());
-			ps.setInt(9, admin.getContactNo());
-			ps.setString(10, admin.getEmail());
-			ps.setString(11, admin.getPassword());
+			ps.setString(1, admin.getFirstName());
+			ps.setString(2, admin.getFatherName());
+			ps.setString(3, admin.getLastName());
+			ps.setString(4, admin.getMotherName());
+			ps.setString(5, admin.getDateOfBirth());
+			ps.setString(6, admin.getGender());
+			ps.setString(7, admin.getAddress());
+			ps.setString(8, admin.getContactNo());
+			ps.setString(9, admin.getEmail());
+			ps.setString(10, admin.getPassword());
 			
 			int x = ps.executeUpdate();
 			
 			if (x > 0) {
-				msg = admin.getFirstName() + " " + admin.getLastName() + " registered as administrator successfylly...";
+				msg = admin.getFirstName() + " " + admin.getLastName() + " "
+						+ "registered as administrator successfully...";
 			} else {
 				throw new AdministratorException(msg);
 			}
@@ -138,7 +139,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminFirstName(String firstName, String adminID) throws AdministratorException {
+	public String changeAdminFirstName(String firstName, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -146,7 +147,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, firstName);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -164,7 +165,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminLastName(String lastName, String adminID) throws AdministratorException {
+	public String changeAdminLastName(String lastName, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -172,7 +173,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, lastName);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -190,7 +191,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminFatherName(String fatherName, String adminID) throws AdministratorException {
+	public String changeAdminFatherName(String fatherName, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -198,7 +199,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, fatherName);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -216,7 +217,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminMotherName(String motherName, String adminID) throws AdministratorException {
+	public String changeAdminMotherName(String motherName, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -224,7 +225,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, motherName);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -242,7 +243,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminGender(String gender, String adminID) throws AdministratorException {
+	public String changeAdminGender(String gender, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -250,7 +251,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, gender);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -268,7 +269,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminDateOfBirth(String dateOfBirth, String adminID) throws AdministratorException {
+	public String changeAdminDateOfBirth(String dateOfBirth, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -276,7 +277,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, dateOfBirth);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -294,41 +295,22 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminAddress(Address address, String adminID) throws AdministratorException {
+	public String changeAdminAddress(String address, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
-			PreparedStatement ps = conn.prepareStatement("select AddressID from administrator"
+			PreparedStatement ps = conn.prepareStatement("UPDATE administrator SET Address = ?"
 					+ " where AdminID = ?");
 			
-			ps.setString(1, adminID);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			String addressID = null;
-			
-			if (rs.next()) {
-				addressID = rs.getString("AddressID");
-			} else {
-				throw new AdministratorException(msg);
-			}
-			
-			ps = conn.prepareStatement("UPDATE addresss SET City = ?, State = ?, Country = ?"
-					+ " where AddressID = ?");
-			
-			ps.setString(1, address.getCity());
-			ps.setString(2, address.getState());
-			ps.setString(3, address.getCountry());
-			ps.setString(4, addressID);
+			ps.setString(1, address);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
 			if (x > 0) {
-				msg = "Admin's address has been changed to " + address.getCity() + ", "
-						+ "" + address.getState() + ", " + address.getCountry();
+				msg = "Admin's address has been changed to " + address;
 			} else {
-				throw new AdministratorException("No address exists with address ID: "
-						+ "" + addressID);
+				throw new AdministratorException(msg);
 			}
 			
 		} catch (SQLException e) {
@@ -339,7 +321,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminContactNo(String contactNo, String adminID) throws AdministratorException {
+	public String changeAdminContactNo(String contactNo, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -347,7 +329,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, contactNo);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -365,7 +347,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminEmail(String email, String adminID) throws AdministratorException {
+	public String changeAdminEmail(String email, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -373,7 +355,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, email);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			
@@ -391,14 +373,14 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String getAdminPassword(String adminID) throws AdministratorException {
+	public String getAdminPassword(int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;;
 		
 		try (Connection conn = DBUtil.provideConnection()) {
 			PreparedStatement ps = conn.prepareStatement("select Password from "
 					+ "administrator where AdminID = ?");
 			
-			ps.setString(1, adminID);
+			ps.setInt(1, adminID);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -416,7 +398,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 	}
 
 	@Override
-	public String changeAdminPassword(String password, String adminID) throws AdministratorException {
+	public String changeAdminPassword(String password, int adminID) throws AdministratorException {
 		String msg = "No admin exists with admin ID: " + adminID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
@@ -424,7 +406,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 					+ " where AdminID = ?");
 			
 			ps.setString(1, password);
-			ps.setString(2, adminID);
+			ps.setInt(2, adminID);
 			
 			int x = ps.executeUpdate();
 			

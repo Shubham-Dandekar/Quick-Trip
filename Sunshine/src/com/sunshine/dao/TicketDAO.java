@@ -2,15 +2,15 @@ package com.sunshine.dao;
 
 import java.util.List;
 
-import com.sunshine.exception.CustomerException;
-import com.sunshine.model.TicketDTO;
+import com.sunshine.exception.BusException;
+import com.sunshine.model.CustomerTicket;
 
 public interface TicketDAO {
-	public TicketDTO bookTicket(int customerID, int busID, int seats) throws CustomerException;
+	public CustomerTicket bookTicket(int customerID, int busID, int seats) throws BusException;
 	
-	public TicketDTO cancelTicket(int customerID, int busID) throws CustomerException;
+	public CustomerTicket cancelTicket(int ticketID) throws BusException;
 	
-	public TicketDTO cancelTicketPartially(int customerID, int busID, int seats) throws CustomerException;
+	public List<CustomerTicket> checkAllTickets(int customerID) throws BusException;
 	
-	public List<TicketDTO> checkAllTickets(int customerID) throws CustomerException;
+	public CustomerTicket confirmTicket(int ticketID) throws BusException;
 }

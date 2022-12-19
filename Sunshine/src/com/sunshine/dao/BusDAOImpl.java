@@ -22,7 +22,7 @@ public class BusDAOImpl implements BusDAO{
 		try (Connection conn = DBUtil.provideConnection()) {
 			PreparedStatement ps = conn.prepareStatement("insert into bus (Bus_Name, Starting_Point,"
 					+ " Ending_Point, Start_Time, End_Time, Capacity, "
-					+ "Seats_Available, Bus_Status) values(?,?,?,?,?,?,?,?)");
+					+ "Seats_Available) values(?,?,?,?,?,?,?)");
 			
 			ps.setString(1, bus.getBusName());
 			ps.setString(2, bus.getStartPoint());
@@ -31,7 +31,6 @@ public class BusDAOImpl implements BusDAO{
 			ps.setString(5, bus.getEndTime());
 			ps.setInt(6, bus.getCapacity());
 			ps.setInt(7, bus.getSeatsAvailable());
-			ps.setString(8, "Available");
 			
 			int x = ps.executeUpdate();
 			
@@ -63,14 +62,16 @@ public class BusDAOImpl implements BusDAO{
 			while (rs.next()) {
 				Bus bus = new Bus();
 				
-				bus.setBusID(rs.getInt("Bus_ID"));
+				bus.setBusID(rs.getInt("BusID"));
 				bus.setBusName(rs.getString("Bus_Name"));
 				bus.setStartPoint(rs.getString("Starting_Point"));
 				bus.setEndPoint(rs.getString("Ending_Point"));
-				bus.setStartTime(rs.getString("Starting_Date_Time"));
-				bus.setEndTime(rs.getString("Ending_Date_Time"));
+				bus.setStartTime(rs.getString("Start_Time"));
+				bus.setEndTime(rs.getString("End_Time"));
 				bus.setCapacity(rs.getInt("Capacity"));
 				bus.setSeatsAvailable(rs.getInt("Seats_Available"));
+				
+				buses.add(bus);
 			} 
 			
 			if (buses.size() == 0) {

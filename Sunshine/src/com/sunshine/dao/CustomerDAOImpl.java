@@ -15,7 +15,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public int customerLogIn(String email, String password) throws CustomerException {
-		int custID = 0;
+		int custID = -1;
 		
 		try (Connection conn = DBUtil.provideConnection()){
 			
@@ -30,7 +30,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 			if (rs.next()) {
 				custID = rs.getInt("CustomerID");
 			} else {
-				throw new CustomerException("Bad credentials...");
+				return -1;
 			}
 		} catch (SQLException e) {
 			throw new CustomerException(e.getMessage());
@@ -40,12 +40,12 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public String getCustomerFirstName(int customerID) throws CustomerException {
-		String msg = "No customer exists with admin ID: " + customerID;;
+	public String getCustomerName(int customerID) throws CustomerException {
+		String msg = "No customer exists with customer ID: " + customerID;;
 		
 		try (Connection conn = DBUtil.provideConnection()) {
 			PreparedStatement ps = conn.prepareStatement("select First_Name, Last_Name from "
-					+ "customer where AdminID = ?");
+					+ "customer where CustomerID = ?");
 			
 			ps.setInt(1, customerID);
 			
@@ -53,7 +53,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 			
 			if (rs.next()) {
 				String firstName = rs.getString("First_Name");
-				String lastName = rs.getString("Lsst_Name");
+				String lastName = rs.getString("Last_Name");
 				msg = firstName + " " + lastName;
 			} else {
 				throw new CustomerException(msg);
@@ -297,11 +297,11 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public String changeCustomerAddress(String address, int customerID) throws CustomerException {
-		String msg = "No admin exists with customer ID: " + customerID;
+		String msg = "No customer exists with customer ID: " + customerID;
 		
 		try (Connection conn = DBUtil.provideConnection()){
-			PreparedStatement ps = conn.prepareStatement("UPDATE administrator SET Address = ?"
-					+ " where AdminID = ?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE customer SET Address = ?"
+					+ " where CustomerID = ?");
 			
 			ps.setString(1, address);
 			ps.setInt(2, customerID);
@@ -375,7 +375,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public String getCustomerPassword(int customerID) throws CustomerException {
-		String msg = "No customer exists with admin ID: " + customerID;;
+		String msg = "No customer exists with customer ID: " + customerID;;
 		
 		try (Connection conn = DBUtil.provideConnection()) {
 			PreparedStatement ps = conn.prepareStatement("select Password from "
@@ -386,7 +386,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
-				msg = rs.getString("Password");
+				msg = "Your password:" + rs.getString("Password");
 			} else {
 				throw new CustomerException(msg);
 			}

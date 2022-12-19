@@ -51,7 +51,7 @@ public class AdministratorDAOImpl implements AdministratorDAO{
 			
 			if (rs.next()) {
 				String firstName = rs.getString("First_Name");
-				String lastName = rs.getString("Lsst_Name");
+				String lastName = rs.getString("Last_Name");
 				msg = firstName + " " + lastName;
 			} else {
 				throw new AdministratorException(msg);

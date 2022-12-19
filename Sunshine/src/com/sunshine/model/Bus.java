@@ -14,6 +14,18 @@ public class Bus {
 		super();
 	}
 
+	public Bus(String busName, String startPoint, String endPoint, String startTime, String endTime, int capacity,
+			int seatsAvailable) {
+		super();
+		this.busName = busName;
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.capacity = capacity;
+		this.seatsAvailable = seatsAvailable;
+	}
+
 	public Bus(int busID, String busName, String startPoint, String endPoint, String startTime, String endTime,
 			int capacity, int seatsAvailable) {
 		super();

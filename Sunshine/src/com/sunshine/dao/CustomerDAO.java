@@ -11,7 +11,7 @@ public interface CustomerDAO {
 	
 	public int customerLogIn(String email, String password) throws CustomerException;
 	
-	public String getCustomerFirstName(int customerID) throws CustomerException;
+	public String getCustomerName(int customerID) throws CustomerException;
 	
 	public Customer showCustomerDetails(int customerID) throws CustomerException;
 	

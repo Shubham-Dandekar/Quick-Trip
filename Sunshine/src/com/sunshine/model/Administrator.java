@@ -17,6 +17,21 @@ public class Administrator {
 		super();
 	}
 
+	public Administrator(String firstName, String fatherName, String lastName, String motherName, String dateOfBirth,
+			String gender, String address, String contactNo, String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.fatherName = fatherName;
+		this.lastName = lastName;
+		this.motherName = motherName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.address = address;
+		this.contactNo = contactNo;
+		this.email = email;
+		this.password = password;
+	}
+
 	public Administrator(int adminID, String firstName, String fatherName, String lastName, String motherName,
 			String dateOfBirth, String gender, String address, String contactNo, String email, String password) {
 		super();

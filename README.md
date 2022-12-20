@@ -4,6 +4,7 @@ Bus Reservation System helps you schedule bus routes and tours with ease. The sy
 # MySQL Commands to Create Database Tables:
 
 create database sunshine;
+
 use sunshine;
 
 create table administrator(

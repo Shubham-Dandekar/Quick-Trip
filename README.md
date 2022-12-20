@@ -7,7 +7,7 @@ create database sunshine;
 
 use sunshine;
 
-create table administrator(
+create table administrator(</br>
 AdminID int primary key auto_increment,
 First_Name varchar(10) NOT NULL,
 Father_Name varchar(10),

@@ -8,53 +8,53 @@ create database sunshine;
 use sunshine;
 
 create table administrator(</br>
-AdminID int primary key auto_increment,
-First_Name varchar(10) NOT NULL,
-Father_Name varchar(10),
-Last_Name varchar(10) NOT NULL,
-Mother_Name varchar(10),
-Date_Of_Birth date NOT NULL,
-Gender varchar(6) NOT NULL,
-Address varchar(20),
-Contact_No varchar(14) NOT NULL,
-Email varchar(30) NOT NULL,
-Password varchar(30) NOT NULL
+AdminID int primary key auto_increment,</br>
+First_Name varchar(10) NOT NULL,</br>
+Father_Name varchar(10),</br>
+Last_Name varchar(10) NOT NULL,</br>
+Mother_Name varchar(10),</br>
+Date_Of_Birth date NOT NULL,</br>
+Gender varchar(6) NOT NULL,</br>
+Address varchar(20),</br>
+Contact_No varchar(14) NOT NULL,</br>
+Email varchar(30) NOT NULL,</br>
+Password varchar(30) NOT NULL</br>
 );
 
-create table customer(
-CustomerID int primary key auto_increment,
-First_Name varchar(10) NOT NULL,
-Father_Name varchar(10),
-Last_Name varchar(10) NOT NULL,
-Mother_Name varchar(10),
-Date_Of_Birth date NOT NULL,
-Gender varchar(6) NOT NULL,
-Address varchar(20) UNIQUE,
-Contact_No varchar(14) NOT NULL,
-Email varchar(30) NOT NULL,
-Password varchar(30) NOT NULL
+create table customer(</br>
+CustomerID int primary key auto_increment,</br>
+First_Name varchar(10) NOT NULL,</br>
+Father_Name varchar(10),</br>
+Last_Name varchar(10) NOT NULL,</br>
+Mother_Name varchar(10),</br>
+Date_Of_Birth date NOT NULL,</br>
+Gender varchar(6) NOT NULL,</br>
+Address varchar(20) UNIQUE,</br>
+Contact_No varchar(14) NOT NULL,</br>
+Email varchar(30) NOT NULL,</br>
+Password varchar(30) NOT NULL</br>
 );
 
-create table bus(
-BusID int primary key auto_increment,
-Bus_Name varchar(10),
-Starting_Point varchar(10) NOT NULL,
-Ending_Point varchar(10) NOT NULL,
-Start_Time varchar(10) NOT NULL,
-End_Time varchar(10) NOT NULL,
-Capacity int NOT NULL,
-Seats_Available int NOT NULL
+create table bus(</br>
+BusID int primary key auto_increment,</br>
+Bus_Name varchar(10),</br>
+Starting_Point varchar(10) NOT NULL,</br>
+Ending_Point varchar(10) NOT NULL,</br>
+Start_Time varchar(10) NOT NULL,</br>
+End_Time varchar(10) NOT NULL,</br>
+Capacity int NOT NULL,</br>
+Seats_Available int NOT NULL</br>
 );
 
-create table ticket(
-TicketID int primary key auto_increment,
-CustomerID int NOT NULL,
-BusID int NOT NULL,
-Seats_Booked int NOT NULL,
-UNIQUE(CustomerID, BusID),
-Booking_Status varchar(11),
-FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (BusID) REFERENCES bus(BusID) ON DELETE CASCADE ON UPDATE CASCADE
+create table ticket(</br>
+TicketID int primary key auto_increment,</br>
+CustomerID int NOT NULL,</br>
+BusID int NOT NULL,</br>
+Seats_Booked int NOT NULL,</br>
+UNIQUE(CustomerID, BusID),</br>
+Booking_Status varchar(11),</br>
+FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID) ON DELETE CASCADE ON UPDATE CASCADE,</br>
+FOREIGN KEY (BusID) REFERENCES bus(BusID) ON DELETE CASCADE ON UPDATE CASCADE</br>
 );
 
 # MySQL Database Tables:

@@ -2,14 +2,8 @@ package com.sunshine.main;
 
 import java.util.Scanner;
 
-import com.sunshine.dao.AdministratorDAO;
-import com.sunshine.dao.AdministratorDAOImpl;
-import com.sunshine.dao.CustomerDAO;
-import com.sunshine.dao.CustomerDAOImpl;
 import com.sunshine.exception.AdministratorException;
 import com.sunshine.exception.CustomerException;
-import com.sunshine.model.Administrator;
-import com.sunshine.model.Customer;
 import com.sunshine.usecases.AdminUseCase;
 import com.sunshine.usecases.CustomerUseCase;
 
@@ -99,6 +93,7 @@ public class Main {
 				} catch (AdministratorException e) {
 					System.out.println(e.getMessage());
 				}
+                break;
                 
             case 2:
             	adminUseCase.registerNewAdmin();

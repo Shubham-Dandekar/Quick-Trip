@@ -1,4 +1,4 @@
-# half-flock-4018
+# Quick Trip
 A bus reservation system is a piece of software that bus companies use to handle their reservations, timetables, and operations. The technology is intended to minimise administrative chores connected with managing bus operations and to simplify the booking process for clients.<br />
 
 It helps you schedule bus routes and tours with ease. The system allows you to plan, schedule and manage unlimited routes with start, end and stop destinations, create a route timetable, print bus schedules, seat and passenger lists.
